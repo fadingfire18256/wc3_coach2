@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>角色攻略總覽</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="page">
+      <header class="page__header">
+        <h1>角色攻略總覽</h1>
+        <input
+          id="search"
+          class="search"
+          type="search"
+          placeholder="搜尋角色名稱..."
+          aria-label="搜尋角色名稱"
+        >
+      </header>
+      <section id="status" class="status status--info" role="status">
+        正在載入攻略列表...
+      </section>
+      <section id="character-list" class="character-list" aria-live="polite"></section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
+
