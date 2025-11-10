@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fadingfire18256.github.io/wc3_coach2/sitemap.xml
