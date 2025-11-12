@@ -63,8 +63,8 @@ async function bootstrap() {
 }
 
 async function fetchGuideIndex() {
-  const url = `${API_BASE}/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.guidesDir}`;
-  const response = await fetch(url, buildRequestOptions());
+  const url = "./guides/index.json";
+  const response = await fetch(url);
 
   if (!response.ok) {
     throw new Error(`GitHub API 回應狀態碼 ${response.status}`);
@@ -264,4 +264,5 @@ function resolveRepo(value) {
   }
   return value;
 }
+
 
