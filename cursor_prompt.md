@@ -50,3 +50,7 @@ project-root/
 - 載入 marked.js CDN：
   ```html
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  修改code:script.js=>找fetch('data/characters.json')=>改成fetch("https://api.github.com/repos/fadingfire18256/wc3_coach2/contents/guides")
+  修改guide.js=>找fetch(`data/guides/${fileName}.md`)=>改成fetch(`https://raw.githubusercontent.com/fadingfire18256/wc3_coach2/main/guides/${fileName}.md`)
+
