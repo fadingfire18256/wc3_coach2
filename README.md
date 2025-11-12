@@ -6,33 +6,57 @@
 
 ---
 
-## 🧭 專案介紹
-這是一個以 **Warcraft 3 信長之野望** 為主題的攻略網站。  
-內容包含：
-- 各角色定位與出裝建議  
-- 線路建議（A、B、C 路分析）  
-- 不同英雄的強勢期與打法策略  
-- 遊戲版本變化與技能調整記錄  
-
-本網站以靜態 HTML + Markdown 撰寫，使用 GitHub Pages 部署。  
+# 🎮 信長角色攻略網站 (wc3_coach2)
+一個以 **GitHub Pages + 原生 JavaScript** 建構的靜態攻略網站，能自動載入 Markdown 角色攻略與影片連結。
 
 ---
 
-## 🌟 網站特色
+## 🧩 專案架構
+
+<img width="763" height="162" alt="image" src="https://github.com/user-attachments/assets/b4852dfe-3f78-44d6-9b91-e888e659a138" />
+
 - 完整收錄英雄攻略（例：松姬、上杉謙信、武田信玄等）  
 - 適合初學者的入門教學  
-- 對應版本更新的即時調整  
 - 支援手機瀏覽  
 
 ---
 
 ## 🧩 開發說明
+
 - 靜態生成：純 HTML / CSS / JS  
-- 網頁托管：GitHub Pages  
+- 網頁托管：GitHub Pages
+- 無需伺服器即可動態載入 Markdown  
 - 搜尋引擎優化（SEO）：
   - 已配置 sitemap.xml  
   - 已設定 `<meta>` 描述與關鍵字  
   - 提交至 Google Search Console  
+
+---
+
+## ⚙️ 技術重點
+
+| 功能 | 技術說明 |
+|------|-----------|
+| 內容動態載入 | 使用 GitHub REST API 讀取 `guides/` 中的 `.md` 檔案 |
+| Markdown 解析 | 透過 `marked.js` 將 Markdown 轉為 HTML |
+| 搜尋功能 | 原生 JS 篩選角色名稱 (支援模糊比對) |
+| 響應式設計 | CSS Grid + 變數控制 + Dark Mode |
+| 安全設計 | `Promise.allSettled` 容錯，避免整頁崩潰 |
+| 自動偵測 Repo | `resolveOwner` / `resolveRepo` 自動解析 GitHub Pages 網域 |
+
+---
+
+## 🚀 使用方式
+輸入
+👉 [https://fadingfire18256.github.io/wc3_coach2/](https://fadingfire18256.github.io/wc3_coach2/)
+
+---
+
+## 🧠 依賴套件
+
+- [marked.js](https://github.com/markedjs/marked)
+- [GitHub REST API](https://docs.github.com/en/rest)
+- 原生 HTML / CSS / JS
 
 ---
 
