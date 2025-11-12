@@ -13,7 +13,7 @@
 
 ## 🧩 專案架構
 
-<img width="763" height="162" alt="image" src="https://github.com/user-attachments/assets/b4852dfe-3f78-44d6-9b91-e888e659a138" />
+<img width="1717" height="962" alt="image" src="https://github.com/user-attachments/assets/00f84b86-2f4c-4bff-8315-29ffa26eb411" />
 
 - 完整收錄英雄攻略（例：松姬、上杉謙信、武田信玄等）  
 - 適合初學者的入門教學  
