@@ -1,17 +1,17 @@
 # wc3_coach2
 # Warcraft 3 信長攻略站（WC3 Coach 2）
 
-🎯 **網站連結**  
-👉 [https://fadingfire18256.github.io/wc3_coach2/](https://fadingfire18256.github.io/wc3_coach2/)
+ **網站連結**  
+ [https://fadingfire18256.github.io/wc3_coach2/](https://fadingfire18256.github.io/wc3_coach2/)
 
 ---
 
-# 🎮 信長角色攻略網站 (wc3_coach2)
+#  信長角色攻略網站 (wc3_coach2)
 一個以 **GitHub Pages + 原生 JavaScript** 建構的靜態攻略網站，能自動載入 Markdown 角色攻略與影片連結。
 
 ---
 
-## 🧩 專案架構
+##  專案架構
 
 <img width="1717" height="962" alt="image" src="https://github.com/user-attachments/assets/00f84b86-2f4c-4bff-8315-29ffa26eb411" />
 
@@ -21,7 +21,7 @@
 
 ---
 
-## 🧩 開發說明
+##  開發說明
 
 - 靜態生成：純 HTML / CSS / JS  
 - 網頁托管：GitHub Pages
@@ -33,7 +33,7 @@
 
 ---
 
-## ⚙️ 技術重點
+##  技術重點
 
 | 功能 | 技術說明 |
 |------|-----------|
@@ -46,13 +46,13 @@
 
 ---
 
-## 🚀 使用方式
+##  使用方式
 輸入
 👉 [https://fadingfire18256.github.io/wc3_coach2/](https://fadingfire18256.github.io/wc3_coach2/)
 
 ---
 
-## 🧠 依賴套件
+##  依賴套件
 
 - [marked.js](https://github.com/markedjs/marked)
 - [GitHub REST API](https://docs.github.com/en/rest)
@@ -60,5 +60,5 @@
 
 ---
 
-## 📬 聯絡
+##  聯絡
 若有錯誤或建議，歡迎在 GitHub Issues 中留言！  
