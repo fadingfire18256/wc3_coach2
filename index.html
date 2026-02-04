@@ -25,13 +25,16 @@
           <a id="add-guide-btn" class="btn-add-guide" href="#" target="_blank" rel="noopener noreferrer" aria-label="新增攻略">+ 新增攻略</a>
           <button id="copy-template-btn" class="btn-copy-template" aria-label="複製空白檔格式">複製模板</button>
         </div>
-        <input
-          id="search"
-          class="search"
-          type="search"
-          placeholder="搜尋角色名稱..."
-          aria-label="搜尋角色名稱"
-        >
+        <div class="search-and-filters">
+          <input
+            id="search"
+            class="search"
+            type="search"
+            placeholder="搜尋角色名稱..."
+            aria-label="搜尋角色名稱"
+          >
+          <div id="role-filters" class="role-filters" role="group" aria-label="角色定位篩選"></div>
+        </div>
       </header>
       <section id="status" class="status status--info" role="status">
         正在載入攻略列表...

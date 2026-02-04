@@ -29,6 +29,7 @@ const statusElement = document.getElementById("status");
 const listElement = document.getElementById("character-list");
 
 let characters = [];
+let selectedRoles = new Set();
 
 bootstrap();
 
@@ -62,6 +63,7 @@ async function bootstrap() {
 
     characters = await hydrateCharacters(files);
     renderStatus("");
+    renderFilters(characters);
     renderCharacters(characters);
 
     searchInput.disabled = false;
@@ -95,7 +97,8 @@ async function hydrateCharacters(files) {
         fileName: file.name,
         displayName: toDisplayName(file.name),
         markdown,
-        videoUrl
+        videoUrl,
+        roles: extractRoles(markdown)
       };
     })
   );
@@ -110,7 +113,8 @@ async function hydrateCharacters(files) {
           fileName: files[index].name,
           displayName: toDisplayName(files[index].name),
           markdown: "",
-          videoUrl: null
+          videoUrl: null,
+          roles: ["萬能"]
         }))
     )
     .sort((a, b) => a.displayName.localeCompare(b.displayName, "zh-Hant"));
@@ -118,9 +122,11 @@ async function hydrateCharacters(files) {
 
 function renderCharacters(source, query = "") {
   const normalizedQuery = query.trim().toLowerCase();
-  const filtered = normalizedQuery
-    ? source.filter((item) => item.displayName.toLowerCase().includes(normalizedQuery))
-    : source;
+  const filtered = source.filter((item) => {
+    const matchQuery = !normalizedQuery || item.displayName.toLowerCase().includes(normalizedQuery);
+    const matchRole = selectedRoles.size === 0 || item.roles.some((r) => selectedRoles.has(r));
+    return matchQuery && matchRole;
+  });
 
   listElement.innerHTML = "";
 
@@ -243,6 +249,48 @@ async function fetchGuideMarkdown(fileName) {
     throw new Error(`Raw 檔案載入失敗：${response.status}`);
   }
   return response.text();
+}
+
+// 從 markdown 提取「角色定位」後面的詞，無定位時回傳 ["萬能"]
+function extractRoles(markdown) {
+  if (!markdown) return ["萬能"];
+  const match = markdown.match(/\*{0,2}角色定位\*{0,2}\s*[:：]\s*(.+)/);
+  if (!match) return ["萬能"];
+  const roles = match[1].split(/[/、]/).map((r) => r.trim()).filter(Boolean);
+  return roles.length ? roles : ["萬能"];
+}
+
+// 從所有角色裡收集不重複的定位詞，動態生成勾選按鈕
+function renderFilters(chars) {
+  const container = document.getElementById("role-filters");
+  if (!container) return;
+
+  // 收集所有定位詞，保持順序：萬能放最後
+  const roleSet = new Set();
+  chars.forEach((c) => c.roles.forEach((r) => roleSet.add(r)));
+  const roles = [...roleSet].sort((a, b) => {
+    if (a === "萬能") return 1;
+    if (b === "萬能") return -1;
+    return a.localeCompare(b, "zh-Hant");
+  });
+
+  container.innerHTML = "";
+  roles.forEach((role) => {
+    const btn = document.createElement("button");
+    btn.className = "role-filter";
+    btn.textContent = role;
+    btn.addEventListener("click", () => {
+      if (selectedRoles.has(role)) {
+        selectedRoles.delete(role);
+        btn.classList.remove("role-filter--active");
+      } else {
+        selectedRoles.add(role);
+        btn.classList.add("role-filter--active");
+      }
+      renderCharacters(characters, searchInput.value);
+    });
+    container.append(btn);
+  });
 }
 
 function extractFirstHttp(markdown) {
