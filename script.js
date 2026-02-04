@@ -318,16 +318,16 @@ function toDisplayName(fileName) {
 }
 
 function buildRequestOptions() {
-  if (!CONFIG.token) {
-    return {};
-  }
+  const options = { cache: "no-cache" };
 
-  return {
-    headers: {
+  if (CONFIG.token) {
+    options.headers = {
       Authorization: `Bearer ${CONFIG.token}`,
       Accept: "application/vnd.github+json"
-    }
-  };
+    };
+  }
+
+  return options;
 }
 
 function resolveOwner(value) {
