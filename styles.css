@@ -64,9 +64,38 @@ main.page {
   text-align: center;
 }
 
+.page__header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .page__header h1 {
   margin: 0;
   font-size: clamp(2rem, 3vw, 2.5rem);
+}
+
+.btn-add-guide {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 2px solid var(--accent);
+  background-color: transparent;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-add-guide:hover,
+.btn-add-guide:focus-visible {
+  background-color: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 .search {

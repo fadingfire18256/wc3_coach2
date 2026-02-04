@@ -41,6 +41,11 @@ async function bootstrap() {
     return;
   }
 
+  const addGuideBtn = document.getElementById("add-guide-btn");
+  if (addGuideBtn) {
+    addGuideBtn.href = `https://github.com/${CONFIG.owner}/${CONFIG.repo}/tree/${CONFIG.branch}/${CONFIG.guidesDir}`;
+  }
+
   searchInput.disabled = true;
 
   try {

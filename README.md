@@ -40,6 +40,7 @@
 | 內容動態載入 | 使用 GitHub REST API 讀取 `guides/` 中的 `.md` 檔案 |
 | Markdown 解析 | 透過 `marked.js` 將 Markdown 轉為 HTML |
 | 搜尋功能 | 原生 JS 篩選角色名稱 (支援模糊比對) |
+| 新增攻略 | 點按鈕直接跳轉到 GitHub 新增文件頁面，權限由 GitHub 控制 |
 | 響應式設計 | CSS Grid + 變數控制 + Dark Mode |
 | 安全設計 | `Promise.allSettled` 容錯，避免整頁崩潰 |
 | 自動偵測 Repo | `resolveOwner` / `resolveRepo` 自動解析 GitHub Pages 網域 |

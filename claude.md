@@ -18,18 +18,18 @@ Warcraft 3 信長角色攻略網站，以 **GitHub Pages** 托管的純靜態網
 ## 資料夾結構
 ```
 project-root/
-├── index.html          # 主頁（角色攻略總覽 + 搜尋欄位）
-├── guide.html          #單一角色攻略詳細頁
+├── index.html          # 主頁（角色攻略總覽 + 搜尋欄位 + 新增攻略按鈕）
+├── guide.html          # 單一角色攻略詳細頁
 ├── script.js           # 主頁邏輯（動態載入角色、搜尋過濾）
 ├── guide.js            # 攻略詳細頁邏輯（讀取並渲染 Markdown）
 ├── styles.css          # 全站樣式
-├── index.json          # 角色索引（已廢棄，不需維護）
 ├── sitemap.xml         # SEO Sitemap
 ├── robots.txt          # SEO robots 指令
-├── .nojekyll           # 禝用 Jekyll（GitHub Pages 必要配置）
+├── .nojekyll           # 禰用 Jekyll（GitHub Pages 必要配置）
+├── .gitignore          # Git 排除規則
 ├── googlec8f6d9191202e703.html  # Google Search Console 驗證
-├── cursor_prompt.md    # 原始開發提示（參考用）
 ├── claude.md           # 本文件（Claude Code 開發指引）
+├── README.md           # 專案說明
 └── guides/             # 角色攻略 Markdown 檔案
     ├── 松姬.md
     ├── 井伊直政.md
@@ -56,11 +56,20 @@ project-root/
 
 ---
 
+## 新增攻略功能
+- 主頁右上角有「+ 新增攻略」按鈕
+- 點擊後跳轉到 GitHub 網頁上的 `guides/` 資料夾，從那裡點 New file 新增攻略
+- 跳轉 URL：`https://github.com/{owner}/{repo}/tree/{branch}/guides`
+- **權限控制完全交給 GitHub**：只有 repo 擁有者才能寫入，其他人會被 GitHub 擋住
+- 不需後端、不需 token、不需任何額外服務
+
+---
+
 ## 開發規則
 1. **不要添加任何框架或建構工具**，保持純靜態。
-2. **新增角色攻略**：只需在 `guides/` 裡放入新的 `.md` 檔案，網站會自動偵測並顯示。
+2. **新增角色攻略**：點「+ 新增攻略」按鈕，或直接在 `guides/` 裡放入新的 `.md` 檔案，網站會自動偵測並顯示。
 3. **攻略內文中第一個以 `http` 開頭的連結**會自動被解析為影片按鈕（YouTube 等）。
-4. **不要手動維護 `index.json`**，內容清單由 GitHub API 動態讀取。
+4. **內容清單由 GitHub API 動態讀取**，不需手動維護任何索引。
 5. **修改樣式**請集中在 `styles.css`，使用已定義的 CSS 變數。
 6. **錯誤處理**使用 `Promise.allSettled`，避免單個檔案失敗導致整頁崩潰。
 
