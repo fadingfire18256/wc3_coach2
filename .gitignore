@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+._*
+.Thumbs.db
+
+# IDE / 編輯器
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 環境變數
+.env
+.env.*
+
+# Log
+*.log
+
+# 暫時檔案
+*.tmp
+*~
