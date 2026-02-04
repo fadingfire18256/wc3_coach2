@@ -46,6 +46,11 @@ async function bootstrap() {
     addGuideBtn.href = `https://github.com/${CONFIG.owner}/${CONFIG.repo}/tree/${CONFIG.branch}/${CONFIG.guidesDir}`;
   }
 
+  const copyTemplateBtn = document.getElementById("copy-template-btn");
+  if (copyTemplateBtn) {
+    copyTemplateBtn.addEventListener("click", handleCopyTemplate);
+  }
+
   searchInput.disabled = true;
 
   try {
@@ -77,7 +82,7 @@ async function fetchGuideIndex() {
 
   const items = await response.json();
   return items
-    .filter((item) => item.type === "file" && item.name.toLowerCase().endsWith(".md"))
+    .filter((item) => item.type === "file" && item.name.toLowerCase().endsWith(".md") && !item.name.startsWith("_"))
     .sort((a, b) => a.name.localeCompare(b.name, "zh-Hant"));
 }
 
@@ -177,6 +182,37 @@ function createCharacterCard(character) {
 function handleSearch(event) {
   const query = event.target.value ?? "";
   renderCharacters(characters, query);
+}
+
+async function handleCopyTemplate() {
+  const btn = document.getElementById("copy-template-btn");
+  try {
+    const template = await fetchGuideMarkdown("_template.md");
+
+    // HTTPS 用 navigator.clipboard，HTTP（localhost）用 textarea + execCommand
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(template);
+    } else {
+      const textarea = document.createElement("textarea");
+      textarea.value = template;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
+
+    btn.textContent = "複製完成！";
+    btn.classList.add("btn-copy-template--success");
+  } catch (err) {
+    console.error("[copy-template]", err);
+    btn.textContent = "複製失敗";
+  }
+  setTimeout(() => {
+    btn.textContent = "複製模板";
+    btn.classList.remove("btn-copy-template--success");
+  }, 1500);
 }
 
 function renderStatus(message, type = "info") {

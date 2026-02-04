@@ -98,6 +98,33 @@ main.page {
   transform: translateY(-2px);
 }
 
+.btn-copy-template {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 2px solid var(--text-muted);
+  background-color: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-copy-template:hover,
+.btn-copy-template:focus-visible {
+  border-color: var(--text);
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.btn-copy-template--success {
+  border-color: #16a34a;
+  color: #16a34a;
+}
+
 .search {
   width: min(480px, 100%);
   margin: 0 auto;
