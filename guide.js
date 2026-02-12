@@ -79,7 +79,73 @@ async function fetchGuideMarkdown(fileName) {
 
 function renderGuide(markdown) {
   contentElement.classList.remove("guide-loading");
-  contentElement.innerHTML = marked.parse(markdown, { mangle: false, headerIds: true });
+
+  // 先提取能力量表，然後從 markdown 移除
+  const { stats, cleanMarkdown } = extractStats(markdown);
+
+  // 渲染 markdown
+  contentElement.innerHTML = marked.parse(cleanMarkdown, { mangle: false, headerIds: true });
+
+  // 如果有能力量表，插入到適當位置
+  if (stats.length > 0) {
+    insertStatsChart(stats);
+  }
+}
+
+// 從 markdown 提取能力量表（格式：能力名稱***）
+function extractStats(markdown) {
+  const stats = [];
+  const statLines = [];
+
+  // 匹配格式如：攻擊性能***
+  const regex = /^(\S+性能)(\*+)\s*$/gm;
+  let match;
+
+  while ((match = regex.exec(markdown)) !== null) {
+    const name = match[1];
+    const level = match[2].length; // 星星數量
+    stats.push({ name, level });
+    statLines.push(match[0]);
+  }
+
+  // 移除原本的量表行
+  let cleanMarkdown = markdown;
+  statLines.forEach(line => {
+    cleanMarkdown = cleanMarkdown.replace(line, "");
+  });
+
+  return { stats, cleanMarkdown };
+}
+
+// 插入能力量表圖表到頁面
+function insertStatsChart(stats) {
+  const chartHTML = `
+    <div class="character-stats">
+      <h3>角色能力</h3>
+      <div class="stats-list">
+        ${stats.map(stat => {
+          const highClass = stat.level > 3 ? ' stat-fill--high' : '';
+          return `
+          <div class="stat-item">
+            <span class="stat-name">${stat.name}</span>
+            <div class="stat-bar">
+              <div class="stat-fill${highClass}" style="width: ${(stat.level / 5) * 100}%"></div>
+            </div>
+            <span class="stat-level">${stat.level}/5</span>
+          </div>
+        `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  // 插入到第一個 h2 或 h3 之前（通常是「角色簡介」或「出裝」段落前）
+  const firstHeading = contentElement.querySelector('h2, h3');
+  if (firstHeading) {
+    firstHeading.insertAdjacentHTML('beforebegin', chartHTML);
+  } else {
+    contentElement.insertAdjacentHTML('afterbegin', chartHTML);
+  }
 }
 
 function renderError(message) {
