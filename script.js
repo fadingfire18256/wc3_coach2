@@ -161,13 +161,7 @@ function createCharacterCard(character) {
   const actions = document.createElement("div");
   actions.className = "character-card__actions";
 
-  const detailLink = document.createElement("a");
-  detailLink.className = "character-card__link";
-  detailLink.href = `guide.html?name=${encodeURIComponent(character.fileName)}`;
-  detailLink.textContent = "查看攻略";
-
-  actions.append(detailLink);
-
+  // 影片按鈕（如果有的話，先加）
   if (character.videoUrl) {
     const videoLink = document.createElement("a");
     videoLink.className = "character-card__video";
@@ -178,6 +172,14 @@ function createCharacterCard(character) {
     videoLink.textContent = "🎬";
     actions.append(videoLink);
   }
+
+  // 攻略按鈕（固定在最右側，後加）
+  const detailLink = document.createElement("a");
+  detailLink.className = "character-card__link";
+  detailLink.href = `guide.html?name=${encodeURIComponent(character.fileName)}`;
+  detailLink.textContent = "攻略";
+
+  actions.append(detailLink);
 
   header.append(name, actions);
   card.append(header);

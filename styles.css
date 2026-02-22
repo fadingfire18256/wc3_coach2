@@ -7,26 +7,26 @@
   color: var(--text, #1f2933);
 
   --background: #f5e6d3;
-  --card: #faf7f2;
-  --card-border: rgba(101, 67, 33, 0.15);
+  --card: #4b5563;
+  --card-border: rgba(31, 41, 55, 0.3);
   --accent: #2563eb;
   --accent-hover: #1d4ed8;
-  --text: #1f2933;
-  --text-muted: #64748b;
+  --text: #f9fafb;
+  --text-muted: #d1d5db;
   --danger: #dc2626;
-  --shadow: 0 10px 30px rgba(101, 67, 33, 0.12);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #111827;
-    --card: #1f2937;
-    --card-border: rgba(255, 255, 255, 0.08);
+    --background: #f5e6d3;
+    --card: #4b5563;
+    --card-border: rgba(31, 41, 55, 0.3);
     --accent: #60a5fa;
     --accent-hover: #3b82f6;
-    --text: #f8fafc;
-    --text-muted: #94a3b8;
-    --shadow: 0 10px 30px rgba(15, 23, 42, 0.45);
+    --text: #f9fafb;
+    --text-muted: #d1d5db;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -39,10 +39,10 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--background);
-  background-image: url('thumb_20200828122447_94.jpg');
-  background-size: auto 60%;
-  background-position: center;
+  background-color: #f5e6d3;
+  background-image: url('1200px-本能寺之变.jpg');
+  background-size: 100% auto;
+  background-position: center top;
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: var(--text);
@@ -150,6 +150,29 @@ main.page {
   color: #16a34a;
 }
 
+.btn-discord {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 2px solid #5865f2;
+  background-color: transparent;
+  color: #5865f2;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-discord:hover,
+.btn-discord:focus-visible {
+  background-color: #5865f2;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
 .search-and-filters {
   display: flex;
   flex-direction: column;
@@ -239,6 +262,7 @@ main.page {
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  min-height: 80px;
 }
 
 .character-card:hover,
@@ -249,21 +273,27 @@ main.page {
 
 .character-card__header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem;
+  flex: 1;
 }
 
 .character-card__name {
   font-size: 1.2rem;
   font-weight: 600;
   word-break: break-word;
+  flex: 1;
+  min-height: 1.2rem;
 }
 
 .character-card__actions {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-end;
   gap: 0.5rem;
+  flex-shrink: 0;
+  min-width: 120px;
 }
 
 .character-card__link {
