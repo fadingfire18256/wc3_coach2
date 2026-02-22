@@ -67,7 +67,26 @@ main.page {
 .page__header-top {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.page__title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.page__logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.page__actions {
+  display: flex;
+  align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
