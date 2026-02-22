@@ -41,7 +41,7 @@ body {
   min-height: 100vh;
   background-color: var(--background);
   background-image: url('thumb_20200828122447_94.jpg');
-  background-size: cover;
+  background-size: auto 60%;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
